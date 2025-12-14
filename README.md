@@ -227,35 +227,45 @@ position_size=max(0,(P(t)−0.5)×2)
 
 📁 프로젝트 구조
 project/
- ┣ data/
- ┃ ┣ raw/                # 원본 OHLCV 데이터
- ┃ ┗ processed/          # 전처리된 데이터
- ┣ strategies/
- ┃ ┣ handcrafted/        # 수동 정의 전략 (JSON / py)
- ┃ ┗ regime_based/       # 레짐별 전략
- ┣ models/
- ┃ ┣ base/               # 기본 모델 (Logistic, RF)
- ┃ ┗ regime/             # 레짐별 모델
- ┣ src/
- ┃ ┣ preprocessing/
- ┃ ┃ ┣ load_data.py
- ┃ ┃ ┗ feature_engineering.py
- ┃ ┣ strategy/
- ┃ ┃ ┣ rule_loader.py
- ┃ ┃ ┣ executor.py
- ┃ ┃ ┗ labeler.py
- ┃ ┣ backtest/
- ┃ ┃ ┗ backtester.py
- ┃ ┣ model/
- ┃ ┃ ┣ train.py
- ┃ ┃ ┗ predict.py
- ┃ ┣ regime/
- ┃ ┃ ┗ detector.py
- ┃ ┣ trading/
- ┃ ┃ ┣ simulator.py
- ┃ ┃ ┗ position_manager.py
- ┃ ┗ utils/
- ┗ README.md
+├─ data/
+│  ├─ raw/                # 원본 OHLCV 데이터
+│  └─ processed/          # 전처리된 데이터
+│
+├─ strategies/
+│  ├─ handcrafted/        # 수동 정의 전략 (JSON / Python)
+│  └─ regime_based/       # 시장 레짐별 전략
+│
+├─ models/
+│  ├─ base/               # 기본 모델 (Logistic Regression, Random Forest)
+│  └─ regime/             # 레짐별 모델
+│
+├─ src/
+│  ├─ preprocessing/
+│  │  ├─ load_data.py     # 데이터 로드
+│  │  └─ feature_engineering.py  # Feature 생성
+│  │
+│  ├─ strategy/
+│  │  ├─ rule_loader.py   # 전략 규칙 로딩
+│  │  ├─ executor.py      # 전략 실행 엔진
+│  │  └─ labeler.py       # 성공/실패 라벨 생성
+│  │
+│  ├─ backtest/
+│  │  └─ backtester.py    # 전략 백테스트
+│  │
+│  ├─ model/
+│  │  ├─ train.py         # 확률 모델 학습
+│  │  └─ predict.py       # 성공 확률 예측
+│  │
+│  ├─ regime/
+│  │  └─ detector.py      # 시장 레짐 분류
+│  │
+│  ├─ trading/
+│  │  ├─ simulator.py    # 모의매매 엔진
+│  │  └─ position_manager.py  # 포지션/비중 관리
+│  │
+│  └─ utils/              # 공통 유틸리티
+│
+└─ README.md
 
 🧭 개발 로드맵
 Phase 1 — 전략 규칙 정의
